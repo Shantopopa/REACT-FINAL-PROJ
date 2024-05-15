@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+
 const DogCard = ({ img, text }) => {
   return (
     <div className="dog-card-box-section">

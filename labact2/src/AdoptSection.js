@@ -1,3 +1,4 @@
+// src/AdoptSection.js
 import React from "react";
 import "./App.css";
 
@@ -38,13 +39,11 @@ const AdoptSection = () => {
           className="adopt-section-image"
           alt="pic"
         />
-
         <img
           src="https://paws.org.ph/wp-content/uploads/2023/08/DSC_0618-scaled-e1693643745322.jpg"
           className="adopt-section-image"
           alt="pic"
         />
-
         <img
           src="https://paws.org.ph/wp-content/uploads/2023/08/1691207856784-scaled-e1692925591960.jpg"
           className="adopt-section-image"
