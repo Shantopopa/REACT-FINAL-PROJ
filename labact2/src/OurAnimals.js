@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./OurAnimals.css";
 
-const OurAnimals = ({ cats, dogs }) => {
+const OurAnimals = ({ cats, dogs, addedPets }) => {
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("All");
 
@@ -13,7 +13,7 @@ const OurAnimals = ({ cats, dogs }) => {
     setSort(event.target.value);
   };
 
-  const animals = [...cats, ...dogs];
+  const animals = [...cats, ...dogs, ...addedPets]; // Merge existing animals with added pets
 
   const filteredAnimals = animals.filter((animal) => {
     if (filter === "All") return true;
