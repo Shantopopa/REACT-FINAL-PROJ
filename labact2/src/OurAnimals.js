@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./OurAnimals.css";
 
 const OurAnimals = ({ cats, dogs }) => {
@@ -29,51 +29,66 @@ const OurAnimals = ({ cats, dogs }) => {
     return 0;
   });
 
+  const catCount = sortedAnimals.filter(animal => cats.some(cat => cat.id === animal.id)).length;
+  const dogCount = sortedAnimals.filter(animal => dogs.some(dog => dog.id === animal.id)).length;
+
+  useEffect(() => {
+    const catCount = sortedAnimals.filter(animal => cats.some(cat => cat.id === animal.id)).length;
+    const dogCount = sortedAnimals.filter(animal => dogs.some(dog => dog.id === animal.id)).length;
+  }, [filter, sort]);
+
   return (
     <div className="our-animals">
       <div className="filter-sort-container">
-        <h3>Categories</h3>
-        <div className="filter">
-          <h4>Filter By:</h4>
-          <div>
-            <label>
-              <input
-                type="radio"
-                value="All"
-                checked={filter === "All"}
-                onChange={handleFilterChange}
-              />
-              All
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="Dogs"
-                checked={filter === "Dogs"}
-                onChange={handleFilterChange}
-              />
-              Dogs
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="Cats"
-                checked={filter === "Cats"}
-                onChange={handleFilterChange}
-              />
-              Cats
-            </label>
+        <div className="filter-sort-content">
+          <h3>Categories</h3>
+          <div className="filter">
+            <h4>Filter By:</h4>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  value="All"
+                  checked={filter === "All"}
+                  onChange={handleFilterChange}
+                />
+                All
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="Dogs"
+                  checked={filter === "Dogs"}
+                  onChange={handleFilterChange}
+                />
+                Dogs
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="Cats"
+                  checked={filter === "Cats"}
+                  onChange={handleFilterChange}
+                />
+                Cats
+              </label>
+            </div>
+          </div>
+
+          <div className="sort">
+            <h4>Sort By:</h4>
+            <select value={sort} onChange={handleSortChange}>
+              <option value="All">All</option>
+              <option value="Breed">Breed</option>
+              <option value="Favorites">Favorites</option>
+            </select>
           </div>
         </div>
+      </div>
 
-        <div className="sort">
-          <h4>Sort By:</h4>
-          <select value={sort} onChange={handleSortChange}>
-            <option value="All">All</option>
-            <option value="Breed">Breed</option>
-            <option value="Favorites">Favorites</option>
-          </select>
-        </div>
+      <div className="animal-counts">
+        <p>Number of Cats: {catCount}</p>
+        <p>Number of Dogs: {dogCount}</p>
       </div>
 
       <div className="animal-list">

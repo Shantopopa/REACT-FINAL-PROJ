@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-import CatSection from "./CatSection";
-import DogSection from "./DogSection";
 import AdoptSection from "./AdoptSection";
 import Campaign from "./Campaign";
 import OurAnimals from "./OurAnimals";
