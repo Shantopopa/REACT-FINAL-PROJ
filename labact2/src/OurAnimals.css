@@ -1,4 +1,3 @@
-/* OurAnimals.css */
 .our-animals {
   padding: 20px;
 }
@@ -7,39 +6,143 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  background-color: #fff9f1 !important;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .filter-sort-content {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.filter,
-.sort {
+.filter h4 {
+  margin: 0;
+  margin-right: 10px; /* Adjust as needed for spacing */
+}
+
+.filter div {
+  display: flex;
+  gap: 10px; /* Adds space between the labels */
+}
+
+.filter label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust as needed for spacing */
+}
+
+.filter-sort-content h3 {
+  margin: 0;
+  padding-right: 20px; /* Adjust as needed for spacing */
+}
+
+.filter {
   display: inline-block;
   margin: 0 20px;
 }
 
+.filter label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1em;
+  color: #666;
+  cursor: pointer;
+}
+
+.filter input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #007bff;
+}
+
+.filter label:hover,
+.filter input[type="radio"]:focus + label {
+  color: #007bff;
+}
+
+.filter input[type="radio"]:checked + label {
+  color: #333;
+  font-weight: bold;
+}
+
 .animal-counts {
   text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
   margin-bottom: 20px;
+  justify-content: center;
+}
+
+.animal-counts p {
+  margin: 0;
 }
 
 .animal-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
 }
 
 .animal-card {
+  width: 250px;
+  padding: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
-  width: 200px;
-  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f1efed;
 }
 
 .animal-card img {
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
+}
+
+.animal-card h5 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  background-color: #f1efed;
+}
+
+.animal-card p {
+  margin: 0;
+  background-color: #f1efed;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.sort h4 {
+  margin: 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.sort select {
+  padding: 5px 10px;
+  font-size: 1em;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.sort select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }

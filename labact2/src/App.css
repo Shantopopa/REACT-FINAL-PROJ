@@ -20,12 +20,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 10;
-  margin: 60px;
+  padding: 10px 10px;
+  margin: 5px;
 }
 
 .logo {
   cursor: pointer;
+  height: 300px;
+  width: 300px;
+  margin-left: 100px;
 }
 
 .dnbtn {
