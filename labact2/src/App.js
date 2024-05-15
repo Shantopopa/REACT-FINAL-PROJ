@@ -252,8 +252,6 @@ const Shelter = () => (
         Philippines 1108
         <br /> **BY APPOINTMENT ONLY.**
         <br /> **WE DO NOT HAVE BRANCHES ANYWHERE ELSE.**
-        <br /> Click map to enlarge or{" "}
-        <span className="google">view Google map here</span>
       </p>
       <div className="map-box">
         <img className="map" src="Map.jpg" alt="map"></img>

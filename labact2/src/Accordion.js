@@ -28,26 +28,26 @@ function Accordion(){
 
 const data = [
     {
-      question: "Question 1",
+      question: "How can I adopt a pet?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        "Applicants go through a screening process to ensure that our rescued animals go to loving homes. The process includes an online interview via Zoom and at least two (2) separate shelter visits to meet and get to know your chosen pet.",
     },
     {
-      question: "Question 2",
+      question: "Can I return my adopted pet if I change my mind?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        "A pet is a lifetime commitment. However, if you truly can’t keep your adopted pet, please don’t abandon them on the streets or with strangers. Please return them to us so we can find another home for them. ",
     },
     {
-      question: "Question 3",
-      answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat`,
+      question: "Do you have puppies or kittens for adoption?",
+      answer: `Puppies and kittens are only available for fostering for up to 6 months, or until they are vaccinated and neutered. Fostered puppies and kittens may be permanently adopted after this period if the fosterer passes the adoption application. `,
     },
     {
-      question: "Question 4",
-      answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat`,
+      question: "Do you pick up stray animals?",
+      answer: `It’s impossible to rescue all stray animals, so we give priority to victims of cruelty and neglect or those whose life is in imminent danger. For concerns related to animal control, please contact your LGU or city pound. `,
     },
     {
-      question: "Question 5",
-      answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat`,
+      question: "Can I donate my pet to you?",
+      answer: `Pets are not donations. A donation is meant to help a charity organization and leaving your pet with us is the opposite of helping.`,
     },
   ];
 

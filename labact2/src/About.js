@@ -3,8 +3,8 @@ import "./App.css";
 
 function About () {
     return(
-        <section className="section-white">
-            <div className="container">
+        <section className="section-white justify-content-center d-flex align-items-center">
+            <div className="container justify-content-center d-flex align-items-center">
                 <div className="row">
                     <div className="col-md-12 text-center">
                         <h2 className="section-title">Meet the Team</h2>
