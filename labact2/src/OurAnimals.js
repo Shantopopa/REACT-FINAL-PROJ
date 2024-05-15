@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./OurAnimals.css";
 
-const OurAnimals = ({ cats, dogs, addedPets }) => {
+const OurAnimals = ({ cats, dogs, addedPets, onEditAnimal, onDeleteAnimal}) => {
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [animals, setAnimals] = useState([]);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
@@ -13,7 +15,14 @@ const OurAnimals = ({ cats, dogs, addedPets }) => {
     setSort(event.target.value);
   };
 
-  const animals = [...cats, ...dogs, ...addedPets]; // Merge existing animals with added pets
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  useEffect(() => {
+    const mergedAnimals = [...cats, ...dogs, ...addedPets];
+    setAnimals(mergedAnimals);
+  }, [cats, dogs, addedPets]);
 
   const filteredAnimals = animals.filter((animal) => {
     if (filter === "All") return true;
@@ -22,12 +31,38 @@ const OurAnimals = ({ cats, dogs, addedPets }) => {
     return false;
   });
 
-  const sortedAnimals = filteredAnimals.sort((a, b) => {
+  const searchedAnimals = filteredAnimals.filter((animal) => {
+    const searchTerms = [
+      animal.name.toLowerCase(),
+      (animal.breed || "").toLowerCase(),
+      (animal.origin || "").toLowerCase(),
+    ];
+    return searchTerms.some((term) =>
+      term.includes(searchQuery.toLowerCase())
+    );
+  });
+
+  const sortedAnimals = searchedAnimals.sort((a, b) => {
     if (sort === "All") return 0;
     if (sort === "Favorites") return b.favorite - a.favorite;
     if (sort === "Breed") return (a.breed || "").localeCompare(b.breed || "");
     return 0;
   });
+
+  const handleEdit = (id) => {
+    const animal = animals.find((animal) => animal.id === id);
+    if (animal) {
+      onEditAnimal(animal);
+    } else {
+      console.error("Animal not found with id:", id);
+    }
+  };
+
+  const handleDelete = (id) => {
+    const updatedAnimals = animals.filter((animal) => animal.id !== id);
+    setAnimals(updatedAnimals);
+    onDeleteAnimal(id);
+  };
 
   const catCount = sortedAnimals.filter((animal) =>
     cats.some((cat) => cat.id === animal.id)
@@ -82,6 +117,16 @@ const OurAnimals = ({ cats, dogs, addedPets }) => {
               <option value="Favorites">Favorites</option>
             </select>
           </div>
+
+          <div className="search">
+            <h4>Search:</h4>
+            <input
+              type="text"
+              placeholder="Search animals..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
         </div>
       </div>
 
@@ -97,6 +142,8 @@ const OurAnimals = ({ cats, dogs, addedPets }) => {
             <h5>{animal.name}</h5>
             <p>Breed: {animal.breed}</p>
             <p>Origin: {animal.origin}</p>
+            <button onClick={() => handleEdit(animal.id)}>Edit</button>
+            <button onClick={() => handleDelete(animal.id)}>Delete</button>
           </div>
         ))}
       </div>

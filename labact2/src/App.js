@@ -5,6 +5,7 @@ import AdoptSection from "./AdoptSection";
 import Campaign from "./Campaign";
 import OurAnimals from "./OurAnimals";
 import PetProfileForm from "./PetProfileForm"; 
+
 import { speciesOptions, breedOptions } from "./petData"; 
 
 const App = () => {
@@ -148,34 +149,52 @@ const App = () => {
       fetchDogs();
     }, []);
 
+    const editAnimal = (editedAnimal) => {
+      // Find the index of the edited animal in the addedPets array
+      const index = addedPets.findIndex((animal) => animal.id === editedAnimal.id);
+      if (index !== -1) {
+        // If found, update the animal in the addedPets array
+        const updatedPets = [...addedPets];
+        updatedPets[index] = editedAnimal;
+        setAddedPets(updatedPets);
+      }
+    };
+
+    const deleteAnimal = (deletedAnimalId) => {
+      // Filter out the deleted animal from the addedPets array
+      const updatedPets = addedPets.filter((animal) => animal.id !== deletedAnimalId);
+      setAddedPets(updatedPets);
+    };
+
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route
-          path="/our-animals"
-          element={<OurAnimals cats={cats} dogs={dogs} addedPets={addedPets} />}
-        />
-      
-      <Route path="/pet-profile-form" element={<PetProfileForm 
-              speciesOptions={speciesOptions} breedOptions={breedOptions}
-              onAddPet={(newPet) => setAddedPets([...addedPets, newPet])} /> }/>
-              
-        <Route
-          path="/"
-          element={
-            <>
-              <AdoptSection />
-              <Campaign />
-              <Shelter />
+  <Header />
+  <Routes>
+    <Route
+      path="/our-animals"
+      element={<OurAnimals cats={cats} dogs={dogs} addedPets={addedPets} onEditAnimal={editAnimal} onDeleteAnimal={deleteAnimal} />}
+    />
+    
+    <Route path="/pet-profile-form" element={<PetProfileForm 
+      speciesOptions={speciesOptions} breedOptions={breedOptions}
+      onAddPet={(newPet) => setAddedPets([...addedPets, newPet])} /> }/>
+                
+    <Route
+      path="/"
+      element={
+        <>
+          <AdoptSection />
+          <Campaign />
+          <Shelter />
+        </>
+      }
+    />
+  </Routes>
+  <Footer />
+  {error && <div>Error: {error}</div>}
+</Router>
 
-              </>
-          }
-        />
-      </Routes>
-      <Footer />
-      {error && <div>Error: {error}</div>}
-    </Router>
+    
   );
 };
 
@@ -281,10 +300,7 @@ const Footer = () => (
   <footer>
     <div className="footer-area-bottom">
       <div className="container">
-        <div className="row">
-          <div className="col-md-12"></div>
-        </div>
-        <div className="row">
+        <div className="row justify-content-center"> 
           <div className="col-md-12 col-sm-12 col-xs-12">
             <div className="credits">
               <a href="#">Privacy Policy</a> | <a href="#">Terms & Condition</a>
@@ -303,5 +319,6 @@ const Footer = () => (
     </div>
   </footer>
 );
+
 
 export default App;

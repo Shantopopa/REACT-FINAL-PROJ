@@ -35,11 +35,11 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
 
   return (
     <div className="container mx-auto py-4">
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-lg">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white-100 p-6 rounded-lg shadow-lg">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-input mt-1 block w-full" />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-input bg-gray-100 mt-1 block w-full" />
           </label>
         </div>
         <div className="mb-4">
