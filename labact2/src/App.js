@@ -13,31 +13,40 @@ const App = () => {
   const [error, setError] = useState(null);
 
   const CAT_API_KEY =
-    "live_jXuhyR6tRgpBapTA9oHRY2kLaMIm2x0PHFosQ8XhMzGnuP4PeLSy2Okcp134NK3G";
+    "live_JWvwhQ22X5QEk3zmgUSY9TMbzzFb78svDiCVMdj9qZB8eS0x11GqV8X2vElTDvck";
   const DOG_API_KEY =
     "live_iY7OnXFvBJv72TumeVLprLa6Yl3fkxNtIb1KpoZFnCaRarITX4fE8cu1K4D3KQbw";
 
   useEffect(() => {
     const fetchCats = async () => {
       setLoadingCats(true);
+      let catsData = [];
       try {
-        const response = await fetch(
-          "https://api.thecatapi.com/v1/images/search?limit=10&include_breeds=true",
-          {
-            headers: { "x-api-key": CAT_API_KEY },
+        while (catsData.length < 10) {
+          const response = await fetch(
+            "https://api.thecatapi.com/v1/images/search?limit=50&include_breeds=true",
+            {
+              headers: { "x-api-key": CAT_API_KEY },
+            }
+          );
+          if (!response.ok) {
+            throw new Error(
+              `Cat API call failed with status ${response.status}`
+            );
           }
-        );
-        if (!response.ok) {
-          throw new Error(`Cat API call failed with status ${response.status}`);
+          const data = await response.json();
+          const filteredData = data
+            .filter((cat) => cat.breeds && cat.breeds.length > 0)
+            .map((cat) => ({
+              id: cat.id,
+              name: cat.breeds[0].name,
+              breed: cat.breeds[0].name,
+              origin: cat.breeds[0].origin,
+              favorite: Math.random() < 0.5, // Mock favorite status for example
+              image: cat.url,
+            }));
+          catsData = [...catsData, ...filteredData].slice(0, 10);
         }
-        const data = await response.json();
-        const catsData = data.map(cat => ({
-          id: cat.id,
-          name: cat.breeds && cat.breeds.length > 0 ? cat.breeds[0].name : "Unknown",
-          breed: cat.breeds && cat.breeds.length > 0 ? cat.breeds[0].name : "Unknown",
-          favorite: Math.random() < 0.5, // Mock favorite status for example
-          image: cat.url
-        }));
         setCats(catsData);
       } catch (error) {
         console.error("Error fetching cats:", error);
@@ -60,12 +69,22 @@ const App = () => {
           throw new Error(`Dog API call failed with status ${response.status}`);
         }
         const data = await response.json();
-        const dogsData = data.map(dog => ({
+        const dogsData = data.map((dog) => ({
           id: dog.id,
-          name: dog.breeds && dog.breeds.length > 0 ? dog.breeds[0].name : "Unknown",
-          breed: dog.breeds && dog.breeds.length > 0 ? dog.breeds[0].name : "Unknown",
+          name:
+            dog.breeds && dog.breeds.length > 0
+              ? dog.breeds[0].name
+              : "Unknown",
+          breed:
+            dog.breeds && dog.breeds.length > 0
+              ? dog.breeds[0].name
+              : "Unknown",
+          origin:
+            dog.breeds && dog.breeds.length > 0
+              ? dog.breeds[0].origin
+              : "Unknown",
           favorite: Math.random() < 0.5, // Mock favorite status for example
-          image: dog.url
+          image: dog.url,
         }));
         setDogs(dogsData);
       } catch (error) {

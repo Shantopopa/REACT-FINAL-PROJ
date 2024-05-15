@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./OurAnimals.css";
 
 const OurAnimals = ({ cats, dogs }) => {
@@ -17,8 +17,8 @@ const OurAnimals = ({ cats, dogs }) => {
 
   const filteredAnimals = animals.filter((animal) => {
     if (filter === "All") return true;
-    if (filter === "Dogs") return dogs.some(d => d.id === animal.id);
-    if (filter === "Cats") return cats.some(c => c.id === animal.id);
+    if (filter === "Dogs") return dogs.some((d) => d.id === animal.id);
+    if (filter === "Cats") return cats.some((c) => c.id === animal.id);
     return false;
   });
 
@@ -29,13 +29,12 @@ const OurAnimals = ({ cats, dogs }) => {
     return 0;
   });
 
-  const catCount = sortedAnimals.filter(animal => cats.some(cat => cat.id === animal.id)).length;
-  const dogCount = sortedAnimals.filter(animal => dogs.some(dog => dog.id === animal.id)).length;
-
-  useEffect(() => {
-    const catCount = sortedAnimals.filter(animal => cats.some(cat => cat.id === animal.id)).length;
-    const dogCount = sortedAnimals.filter(animal => dogs.some(dog => dog.id === animal.id)).length;
-  }, [filter, sort]);
+  const catCount = sortedAnimals.filter((animal) =>
+    cats.some((cat) => cat.id === animal.id)
+  ).length;
+  const dogCount = sortedAnimals.filter((animal) =>
+    dogs.some((dog) => dog.id === animal.id)
+  ).length;
 
   return (
     <div className="our-animals">
@@ -96,7 +95,8 @@ const OurAnimals = ({ cats, dogs }) => {
           <div key={animal.id} className="animal-card">
             <img src={animal.image} alt={animal.name} />
             <h5>{animal.name}</h5>
-            <p>{animal.breed}</p>
+            <p>Breed: {animal.breed}</p>
+            <p>Origin: {animal.origin}</p>
           </div>
         ))}
       </div>

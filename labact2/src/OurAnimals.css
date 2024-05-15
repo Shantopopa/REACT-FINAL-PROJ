@@ -1,45 +1,45 @@
 /* OurAnimals.css */
 .our-animals {
-    padding: 20px;
-  }
-  
-  .filter-sort-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .filter-sort-content {
-    text-align: center;
-  }
-  
-  .filter, .sort {
-    display: inline-block;
-    margin: 0 20px;
-  }
-  
-  .animal-counts {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .animal-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .animal-card {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-  }
-  
-  .animal-card img {
-    max-width: 100%;
-    height: auto;
-  }
-  
+  padding: 20px;
+}
+
+.filter-sort-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-sort-content {
+  text-align: center;
+}
+
+.filter,
+.sort {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.animal-counts {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.animal-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.animal-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.animal-card img {
+  max-width: 100%;
+  height: auto;
+}
