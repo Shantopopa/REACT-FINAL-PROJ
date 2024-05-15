@@ -126,7 +126,7 @@ const App = () => {
 
 const Header = () => (
   <header>
-    <img className="logo" src="PAWS-New-Logo.png" alt="logo" />
+    <img className="logo" src="webapplogo.png" alt="logo" />
     <nav className="nav_links">
       <ul>
         <li>
