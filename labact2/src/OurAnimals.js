@@ -7,13 +7,17 @@ const AnimalCard = ({ animal, onEdit, onDelete }) => (
     <p className="bg-white">Breed: {animal.breed}</p>
     <p className="bg-white">Origin: {animal.origin}</p>
     <div className="flex justify-end mt-4 bg-white">
-      <button onClick={() => onEdit(animal.id)} className="bg-blue-500 text-white px-4 py-2 rounded mr-2">Edit</button>
-      <button onClick={() => onDelete(animal.id)} className="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+      <button
+        onClick={() => onDelete(animal.id)}
+        className="bg-red-500 text-white px-4 py-2 rounded"
+      >
+        Delete
+      </button>
     </div>
   </div>
 );
 
-const OurAnimals = ({ cats, dogs, addedPets, onEditAnimal, onDeleteAnimal }) => {
+const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -58,15 +62,6 @@ const OurAnimals = ({ cats, dogs, addedPets, onEditAnimal, onDeleteAnimal }) => 
     if (sort === "Breed") return (a.breed || "").localeCompare(b.breed || "");
     return 0;
   });
-
-  const handleEdit = (id) => {
-    const animal = animals.find((animal) => animal.id === id);
-    if (animal) {
-      onEditAnimal(animal);
-    } else {
-      console.error("Animal not found with id:", id);
-    }
-  };
 
   const handleDelete = (id) => {
     const updatedAnimals = animals.filter((animal) => animal.id !== id);
@@ -122,7 +117,11 @@ const OurAnimals = ({ cats, dogs, addedPets, onEditAnimal, onDeleteAnimal }) => 
             </div>
             <div className="flex items-center bg-white">
               <h4 className="mr-2 bg-white">Sort By:</h4>
-              <select value={sort} onChange={handleSortChange} className="border border-gray-300 px-2 py-1 rounded bg-white">
+              <select
+                value={sort}
+                onChange={handleSortChange}
+                className="border border-gray-300 px-2 py-1 rounded bg-white"
+              >
                 <option value="All">All</option>
                 <option value="Breed">Breed</option>
                 <option value="Favorites">Favorites</option>
@@ -149,7 +148,7 @@ const OurAnimals = ({ cats, dogs, addedPets, onEditAnimal, onDeleteAnimal }) => 
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
         {sortedAnimals.map((animal) => (
-          <AnimalCard key={animal.id} animal={animal} onEdit={handleEdit} onDelete={handleDelete} />
+          <AnimalCard key={animal.id} animal={animal} onDelete={handleDelete} />
         ))}
       </div>
     </div>
