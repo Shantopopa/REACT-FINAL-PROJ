@@ -42,7 +42,7 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
           <label>Name</label>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-input" />
           <label>Pet</label>
-          <select value={species} onChange={(e) => setSpecies(e.target.value)} className="form-select">
+          <select value={species} onChange={(e) => setSpecies(e.target.value)} className="form-select bg-white">
             {speciesOptions.map((option, index) => (
               <option key={index} value={option.value}>{option.label}</option>
             ))}
@@ -55,7 +55,7 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
               console.log("Breed options:", breedOptions[species]);
               setBreed(e.target.value);
             }} 
-            className="form-select"
+            className="form-select bg-white"
           >
             {species && breedOptions[species] ? (
               breedOptions[species].map((option, index) => (
@@ -66,13 +66,13 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
             )}
           </select>
           <label>Age</label>
-          <div className="flex">
-            <select value={ageValue} onChange={(e) => setAgeValue(e.target.value)} className="form-select">
+          <div className="flex bg-white">
+            <select value={ageValue} onChange={(e) => setAgeValue(e.target.value)} className="form-select bg-white">
               {[...Array(40)].map((_, index) => ( // Max age set to 20 years
                 <option key={index + 1} value={index + 1}>{index + 1}</option>
               ))}
             </select>
-            <select value={ageUnit} onChange={(e) => setAgeUnit(e.target.value)} className="form-select ml-2">
+            <select value={ageUnit} onChange={(e) => setAgeUnit(e.target.value)} className="form-select ml-2 bg-white">
               <option value="months">Months</option>
               <option value="years">Years</option>
             </select>
