@@ -1,3 +1,4 @@
+// CatSection.js
 import React from "react";
 import Animal from "./Animal";
 
@@ -8,9 +9,9 @@ const CatSection = ({ cats }) => {
         <Animal
           key={key}
           animalObj={{
-            name: cat.breeds.length > 0 ? cat.breeds[0].name : "Unknown",
-            photoName: cat.url,
-            breed: cat.breeds.length > 0 ? cat.breeds[0].name : "Unknown",
+            name: cat.name || "Unknown",
+            photoName: cat.image,
+            breed: cat.breed || "Unknown",
           }}
         />
       ))}

@@ -1,0 +1,45 @@
+.our-animals {
+    display: flex;
+  }
+  
+  .filter-sort-container {
+    width: 250px;
+    margin-right: 20px;
+  }
+  
+  .filter h4,
+  .sort h4 {
+    margin-bottom: 10px;
+  }
+  
+  .filter label,
+  .sort label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .sort select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+  }
+  
+  .animal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .animal-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .animal-card img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  

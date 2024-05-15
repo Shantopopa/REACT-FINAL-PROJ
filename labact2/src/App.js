@@ -5,6 +5,7 @@ import CatSection from "./CatSection";
 import DogSection from "./DogSection";
 import AdoptSection from "./AdoptSection";
 import Campaign from "./Campaign";
+import OurAnimals from "./OurAnimals";
 
 const App = () => {
   const [cats, setCats] = useState([]);
@@ -32,7 +33,14 @@ const App = () => {
           throw new Error(`Cat API call failed with status ${response.status}`);
         }
         const data = await response.json();
-        setCats(data);
+        const catsData = data.map(cat => ({
+          id: cat.id,
+          name: cat.breeds && cat.breeds.length > 0 ? cat.breeds[0].name : "Unknown",
+          breed: cat.breeds && cat.breeds.length > 0 ? cat.breeds[0].name : "Unknown",
+          favorite: Math.random() < 0.5, // Mock favorite status for example
+          image: cat.url
+        }));
+        setCats(catsData);
       } catch (error) {
         console.error("Error fetching cats:", error);
         setError("Failed to fetch data from the Cat API");
@@ -54,7 +62,14 @@ const App = () => {
           throw new Error(`Dog API call failed with status ${response.status}`);
         }
         const data = await response.json();
-        setDogs(data);
+        const dogsData = data.map(dog => ({
+          id: dog.id,
+          name: dog.breeds && dog.breeds.length > 0 ? dog.breeds[0].name : "Unknown",
+          breed: dog.breeds && dog.breeds.length > 0 ? dog.breeds[0].name : "Unknown",
+          favorite: Math.random() < 0.5, // Mock favorite status for example
+          image: dog.url
+        }));
+        setDogs(dogsData);
       } catch (error) {
         console.error("Error fetching dogs:", error);
         setError("Failed to fetch data from the Dog API");
@@ -212,20 +227,6 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
-
-const OurAnimals = ({ cats, dogs }) => (
-  <div>
-    <h1>Our Animals</h1>
-    <div className="cat-section">
-      <h2>Cats</h2>
-      <CatSection cats={cats} />
-    </div>
-    <div className="dog-section">
-      <h2>Dogs</h2>
-      <DogSection dogs={dogs} />
-    </div>
-  </div>
 );
 
 export default App;

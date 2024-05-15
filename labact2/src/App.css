@@ -430,3 +430,22 @@ i {
   gap: 10px; /* Gap between cards */
   justify-content: center; /* Center align the cards */
 }
+
+/* Our Animals Styling */
+
+.sorting-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.filter-section h3 {
+  margin: 0 0 10px 0;
+}
+
+.filter-section select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
