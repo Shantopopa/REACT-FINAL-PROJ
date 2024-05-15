@@ -34,74 +34,54 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
   };
 
   return (
-    <div className="container mx-auto py-4">
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white-100 p-6 rounded-lg shadow-lg">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-input bg-gray-100 mt-1 block w-full" />
-          </label>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Pet:
-            <select value={species} onChange={(e) => setSpecies(e.target.value)} className="form-select mt-1 block w-full">
-              {speciesOptions.map((option, index) => (
+    <div className="contact">
+      <div>
+        <h1>Pet Profile</h1>
+        <p>Fill out your pet's details below:</p>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <label>Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-input" />
+          <label>Pet</label>
+          <select value={species} onChange={(e) => setSpecies(e.target.value)} className="form-select">
+            {speciesOptions.map((option, index) => (
+              <option key={index} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <label>Breed</label>
+          <select 
+            value={breed} 
+            onChange={(e) => {
+              console.log("Species:", species);
+              console.log("Breed options:", breedOptions[species]);
+              setBreed(e.target.value);
+            }} 
+            className="form-select"
+          >
+            {species && breedOptions[species] ? (
+              breedOptions[species].map((option, index) => (
                 <option key={index} value={option.value}>{option.label}</option>
+              ))
+            ) : (
+              <option value="">Select Pet first</option>
+            )}
+          </select>
+          <label>Age</label>
+          <div className="flex">
+            <select value={ageValue} onChange={(e) => setAgeValue(e.target.value)} className="form-select">
+              {[...Array(40)].map((_, index) => ( // Max age set to 20 years
+                <option key={index + 1} value={index + 1}>{index + 1}</option>
               ))}
             </select>
-          </label>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Breed:
-            <select 
-              value={breed} 
-              onChange={(e) => {
-                console.log("Species:", species);
-                console.log("Breed options:", breedOptions[species]);
-                setBreed(e.target.value);
-              }} 
-              className="form-select mt-1 block w-full"
-            >
-              {species && breedOptions[species] ? (
-                breedOptions[species].map((option, index) => (
-                  <option key={index} value={option.value}>{option.label}</option>
-                ))
-              ) : (
-                <option value="">Select Pet first</option>
-              )}
+            <select value={ageUnit} onChange={(e) => setAgeUnit(e.target.value)} className="form-select ml-2">
+              <option value="months">Months</option>
+              <option value="years">Years</option>
             </select>
-          </label>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Age:
-            <div className="flex">
-              <select value={ageValue} onChange={(e) => setAgeValue(e.target.value)} className="form-select mt-1 w-1/2">
-                {[...Array(40)].map((_, index) => ( // Max age set to 20 years
-                  <option key={index + 1} value={index + 1}>{index + 1}</option>
-                ))}
-              </select>
-              <select value={ageUnit} onChange={(e) => setAgeUnit(e.target.value)} className="form-select mt-1 ml-2">
-                <option value="months">Months</option>
-                <option value="years">Years</option>
-              </select>
-            </div>
-          </label>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Upload Image:
-            <input type="file" accept="image/*" onChange={handleImageChange} className="form-input mt-1 block w-full" />
-          </label>
-        </div>
-        <div className="flex justify-center">
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Submit
-          </button>
-        </div>
-      </form>
+          </div>
+          <label>Upload Image</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} className="form-input" />
+          <input type="submit" className="submit-btn" value="Submit" />
+        </form>
+      </div>
     </div>
   );
 };

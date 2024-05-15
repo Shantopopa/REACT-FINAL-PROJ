@@ -5,7 +5,9 @@ import AdoptSection from "./AdoptSection";
 import Campaign from "./Campaign";
 import OurAnimals from "./OurAnimals";
 import PetProfileForm from "./PetProfileForm"; 
-
+import About from "./About";
+import Accordion from "./Accordion";
+import { Contact } from "./Contact";
 import { speciesOptions, breedOptions } from "./petData"; 
 
 const App = () => {
@@ -180,6 +182,21 @@ const App = () => {
       onAddPet={(newPet) => setAddedPets([...addedPets, newPet])} /> }/>
                 
     <Route
+      path="about"
+      element={<About/>}
+    />
+
+<Route
+      path="faqs"
+      element={<Accordion/>}
+    />
+
+<Route
+      path="contacts"
+      element={<Contact/>}
+    />
+
+<Route
       path="/"
       element={
         <>
@@ -210,25 +227,16 @@ const Header = () => (
           <Link to="/our-animals">our animals</Link>
         </li>
         <li>
-          <a href="#">about us</a>
-        </li>
-        <li>
-          <a href="#">join us</a>
-        </li>
-        <li>
-          <a href="#">support us</a>
+        <Link to="/about">about us</Link>
         </li>
         <li>
           <Link to="/pet-profile-form"> Add a pet for adoption </Link>
         </li>
         <li>
-          <a href="#">faq</a>
+        <Link to="/faqs">faq</Link>
         </li>
         <li>
-          <a href="#">shop</a>
-        </li>
-        <li>
-          <a href="#">contact us</a>
+        <Link to="/contacts">contact us</Link>
         </li>
       </ul>
     </nav>

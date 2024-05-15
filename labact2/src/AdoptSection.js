@@ -1,10 +1,19 @@
 // src/AdoptSection.js
 import React from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Accordion from "./Accordion";
 
 const AdoptSection = () => {
   return (
+
     <div className="adopt-section">
+      <Routes>  
+      <Route
+      path="faqs"
+      element={<Accordion/>}
+    />
+    </Routes>  
       <div className="adopt-section-left">
         <h1>Adopt a shelter cat or dog</h1>
         <div className="p-text">
@@ -28,8 +37,7 @@ const AdoptSection = () => {
           </ul>
         </div>
         <div className="adopt-section-footer">
-          <button className="btn-filled">Apply Now</button>
-          <button className="btn-outline">Adoption FAQ</button>
+        <Link to="/faqs"><button className="btn-outline">Adoption FAQ</button></Link>
         </div>
       </div>
 

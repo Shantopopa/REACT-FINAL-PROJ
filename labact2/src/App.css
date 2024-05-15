@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   position: 0;
-  background-color: #fff9f1;
+  background-color: #dfcfbb;
 }
 
 li,
@@ -20,15 +20,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 10px;
-  margin: 5px;
+  padding: 30px 10;
 }
 
 .logo {
   cursor: pointer;
-  height: 300px;
-  width: 300px;
-  margin-left: 100px;
 }
 
 .dnbtn {
@@ -57,14 +53,206 @@ header {
   transition-duration: 0.1s;
 }
 
+.contact{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact > div{
+  width: 600px;
+  background: #fff;
+  padding: 2.5em;
+  border-radius: 10px;
+  box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
+}
+
+.contact h1{
+  background: transparent;
+  font-size: 2.5em;
+}
+
+.contact p{
+  background: transparent;
+  max-width: 400px;
+  line-height: 27px;
+  color: #a0a0a0;
+  margin: 1em 0 2em 0;
+}
+
+.contact form{
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.contact input,
+.contact textarea{
+  border: none;
+  padding: 0.8em;
+  width: 100%;
+  border-radius: 5px;
+  margin: 0.5em 0 1em 0;
+  font-size: 1.1em;
+  background: #eee;
+  color: #969696;
+}
+
+.contact label{
+  background: transparent;
+  color: #000;
+}
+
+.contact textarea{
+  resize: none;
+  height: 8em;
+  font-family: sans-serif;
+}
+
+.contact input:focus,
+.contact textarea:focus{
+  outline: none;
+}
+
+.contact input::placeholder,
+.contact textarea::placeholder{
+  color: #bababa;
+}
+
+.contact .submit-btn{
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.8em;
+  background-color: #ff742e;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1.2em;
+  transition: 0.3s;
+}
+
+.contact .submit-btn:hover{
+  background-color: #e16628;
+}
+
+.section-white{
+  margin-top: 50px;
+  padding: 70px 0;
+}
+
+.team-item{
+  background: #f4f5f6;
+  text-align: center;
+  margin: 20px 0;
+  padding: 50px 20px 40px 20px;
+  border-radius: 8px 8px;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.team-img{
+  background: transparent;
+}
+
+.name{
+  background: transparent;
+}
+.team-info{
+  background: transparent;
+}
+.name1{
+  background: transparent;
+}
+.team-item:hover{
+  background: #3956de;
+  color: white;
+}
+
+.team-item h3{
+  margin: 20px 0 1px 0 !important;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.team-img{
+  max-width: 140px;
+  padding: 6px 6px;
+  background-color: #dedede;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordion{
+  width: 500px;
+}
+
+.item{
+  background: #f0ebe1;
+  margin-bottom: 5px;
+  padding: 10px 20px;
+}
+
+.title{
+  background: transparent;
+  color: #85662b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.title1{
+  background: transparent;
+}
+
+.head{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content{
+  background: transparent;
+  color: #8b7f75;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+
+.content.show{
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+
 .nav_links {
   list-style: none;
+  text-decoration: none;
 }
 
 .nav_links li {
   display: inline-block;
   padding: 0px 20px;
+  text-decoration: none;
   text-transform: uppercase;
+}
+
+.nav_links li a{
+  text-decoration: none;
 }
 
 a::after {
@@ -154,6 +342,7 @@ i {
 }
 
 .dog-card-box-section {
+  padding: px;
   margin: auto;
   height: auto;
 }
@@ -183,9 +372,9 @@ i {
 }
 
 .dog-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
 }
 
 .adopt-section {
@@ -396,59 +585,4 @@ i {
 
 .credits a {
   color: #000;
-}
-
-/* Add your styles here */
-.animal-card,
-.dog-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
-  width: 200px; /* Fixed width for uniform size */
-  height: 300px; /* Fixed height for uniform size */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.animal-card img,
-.dog-card img {
-  max-width: 100%;
-  max-height: 60%; /* Limit image height to fit within card */
-  border-radius: 8px;
-}
-
-.animal-card h3,
-.dog-card p {
-  margin: 5px 0;
-  font-size: 1.1em;
-}
-
-.cat-grid,
-.dog-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-  gap: 10px; /* Gap between cards */
-  justify-content: center; /* Center align the cards */
-}
-
-/* Our Animals Styling */
-
-.sorting-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.filter-section h3 {
-  margin: 0 0 10px 0;
-}
-
-.filter-section select {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;
 }
