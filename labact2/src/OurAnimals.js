@@ -78,7 +78,7 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
 
   return (
     <div className="container mx-auto px-4 py-8 bg-white">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 bg-white">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 bg-white p-4 rounded-lg">
         <div className="mb-4 md:mb-0 bg-white">
           <h3 className="text-xl font-semibold mb-2 bg-white">Categories</h3>
           <div className="flex flex-col md:flex-row bg-white">

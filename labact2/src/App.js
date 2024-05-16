@@ -9,6 +9,7 @@ import About from "./About";
 import Accordion from "./Accordion";
 import { Contact } from "./Contact";
 import { speciesOptions, breedOptions } from "./petData";
+import DogSection from "./DogSection";
 
 const App = () => {
   const [speciesOptions, setSpeciesOptions] = useState([]);
@@ -146,7 +147,6 @@ const App = () => {
   }, []);
 
   const deleteAnimal = (deletedAnimalId) => {
-    // Filter out the deleted animal from the addedPets array
     const updatedPets = addedPets.filter(
       (animal) => animal.id !== deletedAnimalId
     );
@@ -185,6 +185,8 @@ const App = () => {
         <Route path="faqs" element={<Accordion />} />
 
         <Route path="contacts" element={<Contact />} />
+
+        <Route path="dog-section" element={<DogSection />} />
 
         <Route
           path="/"
@@ -225,6 +227,9 @@ const Header = () => (
         </li>
         <li>
           <Link to="/contacts">contact us</Link>
+        </li>
+        <li>
+          <Link to="/dog-section">Others</Link>
         </li>
       </ul>
     </nav>
