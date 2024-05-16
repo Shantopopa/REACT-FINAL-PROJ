@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-const AnimalCard = ({ animal, onDelete }) => (
+const AnimalCard = ({ animal, onEdit, onDelete, onToggleFavorite }) => (
   <div className="border border-gray-300 rounded p-4 bg-white">
     <img src={animal.image} alt={animal.name} className="w-full mb-2 rounded" />
     <h5 className="text-lg font-semibold mb-1 bg-white">{animal.name}</h5>
     <p className="bg-white">Breed: {animal.breed}</p>
     <div className="flex justify-end mt-4 bg-white">
       <button
+        onClick={() => onToggleFavorite(animal.id)}
+        className={`px-4 py-2 rounded ${
+          animal.favorite
+            ? "bg-yellow-500 text-white"
+            : "bg-gray-300 text-black"
+        }`}
+      >
+        {animal.favorite ? "Unfavorite" : "Favorite"}
+      </button>
+      <button
         onClick={() => onDelete(animal.id)}
-        className="bg-red-500 text-white px-4 py-2 rounded"
+        className="bg-red-500 text-white px-4 py-2 rounded ml-2"
       >
         Delete
       </button>
@@ -21,6 +31,7 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
   const [sort, setSort] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [animals, setAnimals] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
@@ -35,9 +46,22 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
   };
 
   useEffect(() => {
-    const mergedAnimals = [...cats, ...dogs, ...addedPets];
+    const mergedAnimals = [...cats, ...dogs, ...addedPets].map((animal) => ({
+      ...animal,
+      favorite: false,
+    }));
     setAnimals(mergedAnimals);
   }, [cats, dogs, addedPets]);
+
+  const toggleFavorite = (id) => {
+    const updatedAnimals = animals.map((animal) =>
+      animal.id === id ? { ...animal, favorite: !animal.favorite } : animal
+    );
+    setAnimals(updatedAnimals);
+
+    const updatedFavorites = updatedAnimals.filter((animal) => animal.favorite);
+    setFavorites(updatedFavorites);
+  };
 
   const filteredAnimals = animals.filter((animal) => {
     if (filter === "All") return true;
@@ -59,8 +83,14 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
     if (sort === "All") return 0;
     if (sort === "Favorites") return b.favorite - a.favorite;
     if (sort === "Breed") return (a.breed || "").localeCompare(b.breed || "");
+    if (sort === "Name") return a.name.localeCompare(b.name); // Add this line for sorting by name
     return 0;
   });
+
+  const animalsToDisplay =
+    sort === "Favorites"
+      ? sortedAnimals.filter((animal) => animal.favorite)
+      : sortedAnimals;
 
   const handleDelete = (id) => {
     const updatedAnimals = animals.filter((animal) => animal.id !== id);
@@ -68,16 +98,16 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
     onDeleteAnimal(id);
   };
 
-  const catCount = sortedAnimals.filter((animal) =>
+  const catCount = animalsToDisplay.filter((animal) =>
     cats.some((cat) => cat.id === animal.id)
   ).length;
-  const dogCount = sortedAnimals.filter((animal) =>
+  const dogCount = animalsToDisplay.filter((animal) =>
     dogs.some((dog) => dog.id === animal.id)
   ).length;
 
   return (
     <div className="container mx-auto px-4 py-8 bg-white">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 bg-white p-4 rounded-lg">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 bg-white">
         <div className="mb-4 md:mb-0 bg-white">
           <h3 className="text-xl font-semibold mb-2 bg-white">Categories</h3>
           <div className="flex flex-col md:flex-row bg-white">
@@ -124,6 +154,7 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
                 <option value="All">All</option>
                 <option value="Breed">Breed</option>
                 <option value="Favorites">Favorites</option>
+                <option value="Name">Name</option>{" "}
               </select>
             </div>
           </div>
@@ -146,9 +177,19 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
-        {sortedAnimals.map((animal) => (
-          <AnimalCard key={animal.id} animal={animal} onDelete={handleDelete} />
+        {animalsToDisplay.map((animal) => (
+          <AnimalCard
+            key={animal.id}
+            animal={animal}
+            onDelete={handleDelete}
+            onToggleFavorite={toggleFavorite}
+          />
         ))}
+        {sort === "Favorites" && animalsToDisplay.length === 0 && (
+          <p className="col-span-full text-center bg-white">
+            No favorite animals.
+          </p>
+        )}
       </div>
     </div>
   );

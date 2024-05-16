@@ -71,7 +71,7 @@ const App = () => {
       setLoadingCats(true);
       let catsData = [];
       try {
-        while (catsData.length < 10) {
+        while (catsData.length < 30) {
           const response = await fetch(
             "https://api.thecatapi.com/v1/images/search?limit=50&include_breeds=true",
             {
@@ -94,7 +94,7 @@ const App = () => {
               favorite: Math.random() < 0.5, // Mock favorite status for example
               image: cat.url,
             }));
-          catsData = [...catsData, ...filteredData].slice(0, 10);
+          catsData = [...catsData, ...filteredData].slice(0, 30);
         }
         setCats(catsData);
       } catch (error) {
@@ -109,7 +109,7 @@ const App = () => {
       setLoadingDogs(true);
       try {
         const response = await fetch(
-          "https://api.thedogapi.com/v1/images/search?limit=10&include_breeds=true",
+          "https://api.thedogapi.com/v1/images/search?limit=30&include_breeds=true",
           {
             headers: { "x-api-key": DOG_API_KEY },
           }
