@@ -71,7 +71,7 @@ const App = () => {
       setLoadingCats(true);
       let catsData = [];
       try {
-        while (catsData.length < 10) {
+        while (catsData.length < 30) {
           const response = await fetch(
             "https://api.thecatapi.com/v1/images/search?limit=50&include_breeds=true",
             {
