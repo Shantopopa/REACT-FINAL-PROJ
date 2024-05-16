@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const AnimalCard = ({ animal, onEdit, onDelete }) => (
+const AnimalCard = ({ animal, onDelete }) => (
   <div className="border border-gray-300 rounded p-4 bg-white">
     <img src={animal.image} alt={animal.name} className="w-full mb-2 rounded" />
     <h5 className="text-lg font-semibold mb-1 bg-white">{animal.name}</h5>
     <p className="bg-white">Breed: {animal.breed}</p>
-    <p className="bg-white">Origin: {animal.origin}</p>
     <div className="flex justify-end mt-4 bg-white">
       <button
         onClick={() => onDelete(animal.id)}

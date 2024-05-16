@@ -14,16 +14,24 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
     setImage(file);
   };
 
+  const getBreedNameById = (species, breedId) => {
+    const breed = breedOptions[species]?.find(
+      (option) => option.value === breedId
+    );
+    return breed ? breed.label : "";
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const breedName = getBreedNameById(species, breed); // Get breed name from breed id
     const newProfile = {
       name: name,
       species: species,
-      breed: breed,
+      breed: breedName, // Use breed name instead of breed id
       age: `${ageValue} ${ageUnit}`,
       image: URL.createObjectURL(image),
     };
-    onAddPet(newProfile); // Call the function to add pets
+    onAddPet(newProfile);
 
     setName("");
     setSpecies("");
@@ -61,11 +69,7 @@ const PetProfileForm = ({ speciesOptions, breedOptions, onAddPet }) => {
           <label>Breed</label>
           <select
             value={breed}
-            onChange={(e) => {
-              console.log("Species:", species);
-              console.log("Breed options:", breedOptions[species]);
-              setBreed(e.target.value);
-            }}
+            onChange={(e) => setBreed(e.target.value)}
             className="form-select form-select-lg mb-3 bg-white"
           >
             {species && breedOptions[species] ? (

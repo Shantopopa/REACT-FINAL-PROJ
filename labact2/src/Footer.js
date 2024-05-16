@@ -9,10 +9,8 @@ const Footer = () => (
             </div>
             <div className="copyright text-center">
               <p>
-                &copy; 2024 The Philippine Animal Welfare Society. All Rights
-                Reserved.
-                <br /> Website donated by syllogistic.ai Limited · intelligent
-                marketing that www.works!®
+                &copy; 2024 PAWS Cat and Dog Shelter! Website donated by
+                G.Montano.ai Limited · intelligent marketing that www.ust.cics!®
               </p>
             </div>
           </div>
