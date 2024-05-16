@@ -10,10 +10,12 @@ const AnimalCard = ({ animal, onEdit, onDelete, onToggleFavorite }) => (
       <button
         onClick={() => onToggleFavorite(animal.id)}
         className={`px-4 py-2 rounded ${
-          animal.favorite ? 'bg-yellow-500 text-white' : 'bg-gray-300 text-black'
+          animal.favorite
+            ? "bg-yellow-500 text-white"
+            : "bg-gray-300 text-black"
         }`}
       >
-        {animal.favorite ? 'Unfavorite' : 'Favorite'}
+        {animal.favorite ? "Unfavorite" : "Favorite"}
       </button>
       <button
         onClick={() => onDelete(animal.id)}
@@ -45,20 +47,20 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
   };
 
   useEffect(() => {
-    const mergedAnimals = [...cats, ...dogs, ...addedPets].map(animal => ({
+    const mergedAnimals = [...cats, ...dogs, ...addedPets].map((animal) => ({
       ...animal,
-      favorite: false
+      favorite: false,
     }));
     setAnimals(mergedAnimals);
   }, [cats, dogs, addedPets]);
 
   const toggleFavorite = (id) => {
-    const updatedAnimals = animals.map(animal =>
+    const updatedAnimals = animals.map((animal) =>
       animal.id === id ? { ...animal, favorite: !animal.favorite } : animal
     );
     setAnimals(updatedAnimals);
 
-    const updatedFavorites = updatedAnimals.filter(animal => animal.favorite);
+    const updatedFavorites = updatedAnimals.filter((animal) => animal.favorite);
     setFavorites(updatedFavorites);
   };
 
@@ -82,12 +84,14 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
     if (sort === "All") return 0;
     if (sort === "Favorites") return b.favorite - a.favorite;
     if (sort === "Breed") return (a.breed || "").localeCompare(b.breed || "");
+    if (sort === "Name") return a.name.localeCompare(b.name); // Add this line for sorting by name
     return 0;
   });
 
-  const animalsToDisplay = sort === "Favorites"
-    ? sortedAnimals.filter(animal => animal.favorite)
-    : sortedAnimals;
+  const animalsToDisplay =
+    sort === "Favorites"
+      ? sortedAnimals.filter((animal) => animal.favorite)
+      : sortedAnimals;
 
   const handleDelete = (id) => {
     const updatedAnimals = animals.filter((animal) => animal.id !== id);
@@ -151,6 +155,7 @@ const OurAnimals = ({ cats, dogs, addedPets, onDeleteAnimal }) => {
                 <option value="All">All</option>
                 <option value="Breed">Breed</option>
                 <option value="Favorites">Favorites</option>
+                <option value="Name">Name</option>{" "}
               </select>
             </div>
           </div>
